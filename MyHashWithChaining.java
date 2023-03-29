@@ -40,7 +40,7 @@ public class MyHashWithChaining<T> {
 
         int indexOfData = this.hashFunction(data);
 
-        LinkedList currentList = hashTable[indexOfData];
+        LinkedList <T>currentList = hashTable[indexOfData];
 
         if(!currentList.contains(data)){
             currentList.add(data);
@@ -57,7 +57,7 @@ public class MyHashWithChaining<T> {
 
         int indexOfData = this.hashFunction(data);
 
-        LinkedList currentList = hashTable[indexOfData];
+        LinkedList <T>currentList = hashTable[indexOfData];
 
         int indexOfElement = currentList.indexOf(data);
 
@@ -76,7 +76,7 @@ public class MyHashWithChaining<T> {
 
         int indexOfData = this.hashFunction(data);
 
-        LinkedList currentList = hashTable[indexOfData];
+        LinkedList<T> currentList = hashTable[indexOfData];
 
         if(currentList.contains(data))  return true;
 

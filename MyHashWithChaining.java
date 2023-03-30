@@ -2,9 +2,13 @@
 
 public class MyHashWithChaining<T> {
 
-    public LinkedList<T> hashTable [];
+    private LinkedList<T> hashTable [];
 
     public int length;
+
+    private double loadFactor; 
+
+    private int numberOfData = 0;
 
     public MyHashWithChaining(){
 
@@ -14,6 +18,9 @@ public class MyHashWithChaining<T> {
 
         for(int i=0; i<19; i++)
             hashTable[i] = new LinkedList<T>();
+
+        loadFactor =0.0;
+        numberOfData=0;
 
     }
 
@@ -26,6 +33,9 @@ public class MyHashWithChaining<T> {
         for(int i=0; i<this.length; i++)
             this.hashTable[i] = new LinkedList<>();
 
+        loadFactor = 0.0;
+        numberOfData=0;
+
     }
 
     private int hashFunction(T data){
@@ -34,7 +44,7 @@ public class MyHashWithChaining<T> {
 
     }
 
-    public boolean insert(T data){
+    public boolean add(T data){
 
         if(data == null ) return false;
 
@@ -43,7 +53,13 @@ public class MyHashWithChaining<T> {
         LinkedList <T>currentList = hashTable[indexOfData];
 
         if(!currentList.contains(data)){
+
             currentList.add(data);
+
+            this.numberOfData++;
+
+            loadFactor = numberOfData/this.length;
+
             return true;
         }
 
@@ -63,14 +79,20 @@ public class MyHashWithChaining<T> {
 
 
         if(currentList.get(indexOfElement).equals(data)){
+
             currentList.remove(indexOfElement);
+
+            numberOfData--;
+
+            loadFactor = numberOfData / this.length;
+
             return true;
         }
 
         return false;
     }
 
-    public boolean search(T data){
+    public boolean contains(T data){
 
         if(data == null) return false;
 
@@ -84,7 +106,7 @@ public class MyHashWithChaining<T> {
 
     }
 
-    public void showIndexes(){
+    public void printIndexes(){
 
         for(int i=0; i<this.length; i++){
 
@@ -111,7 +133,7 @@ public class MyHashWithChaining<T> {
 
     }
 
-    public void showValues(){
+    public void printValues(){
 
         for(int i=0; i<this.length; i++){
 
